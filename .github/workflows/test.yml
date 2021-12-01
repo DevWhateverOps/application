@@ -1,0 +1,13 @@
+---
+name: learn-github-actions
+
+on: [push]
+
+jobs:
+  test-local-action:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: ./.github/actions/action-template
+        with:
+          who-to-greet: "TESTER!!"
+

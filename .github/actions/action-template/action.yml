@@ -1,0 +1,24 @@
+---
+name: 'Create salutation'
+description: 'Create a salutation message'
+
+inputs:
+  who-to-greet:
+    description: 'Who to greet'
+    required: true
+    default: 'World'
+
+outputs:
+  salutation:
+    description: 'Salutation'
+    value: ${{ steps.salutation-generator.outputs.result }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: 'Create and echo salutation'
+      shell: bash
+      id: salutation-generator
+      run: |
+        echo "::notice ::Salutation created: Hello, ${{ inputs.who-to-greet }}"
+        echo "::set-output name=result::Hello, ${{ inputs.who-to-greet }}"
